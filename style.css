@@ -1,0 +1,57 @@
+button {
+    width: 75px;
+    height: 75px;
+    border: 1px solid orange;
+    background-color: orange;
+    border-radius: 45px;
+    font-size: x-large;
+    margin: 3px;
+}
+
+body {
+    background-color: darkslategrey;
+}
+
+h1 {
+    background-color: orange;
+    /* border-radius: 25px; */
+    border-color: black;
+}
+
+h1,
+.row1,
+.row2,
+.row3,
+.row4,
+.row5,
+.row6,
+#textBox, #message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#message {
+    color: lightgrey;
+    font-size: larger;
+}
+
+#textBox {
+    color: black;
+    background-color: lightgray;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 10px 600px;
+    height: 10px;
+    font-size: x-large;
+}
+
+
+button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    background-color: darkorange;
+    /* Lowering the shadow */
+}
+
+
