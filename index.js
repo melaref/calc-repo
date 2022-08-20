@@ -11,6 +11,7 @@ function operate(x, y, operator) {
 }
 const clearBtn = document.getElementById('clear');
 const equalBtn = document.getElementById('equals');
+const decimalBtn = document.getElementById('decimal');
 const text = document.getElementById('textBox');
 const message = document.getElementById('message');
 let bool = false;
@@ -23,23 +24,37 @@ clearBtn.addEventListener('click', () => {
     number1 = '';
     firstPart = '';
     bool = false;
+    decimalBtn.disabled = true;
 })
 
 equalBtn.addEventListener('click', () => {
+    decimalBtn.disabled = true;
+    operators.forEach((button) => { button.disabled = false })
     opereateString(text.innerText);
+})
+
+decimalBtn.addEventListener('click', () => {
+    text.innerText += '.';
+    decimalBtn.disabled = true;
 })
 
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 numbers.forEach((button) => {
     button.addEventListener('click', () => {
-        text.innerText += button.id;
+        if (button.id == '0' && text.innerText == '0') {
+            operators.forEach((button) => { button.disabled = false })
+        } else {
+            text.innerText += button.id;
+            operators.forEach((button) => { button.disabled = false })
+        }
     })
 })
 let number1;
 let firstPart
 operators.forEach((button) => {
     button.addEventListener('click', () => {
+        decimalBtn.disabled = false;
         if (bool) {
             opereateString(text.innerText);
             number1 = text.innerText;
@@ -52,6 +67,7 @@ operators.forEach((button) => {
             firstPart = text.innerText;
             bool = true;
         }
+        operators.forEach((button) => { button.disabled = true })
     })
 })
 const buttons = document.querySelectorAll('button');
@@ -60,7 +76,7 @@ function opereateString(string) {
     let y = parseFloat(string.substring(firstPart.length, string.length));
     let z = firstPart.substring(firstPart.length - 1, firstPart.length)
     let ans = operate(x, y, z);
-    if(typeof(ans) == "number" || ans == NaN) text.innerText = `${ans}`;
+    if (typeof (ans) == "number" || ans == NaN) text.innerText = `${ans}`;
     else {
         message.innerText = ans;
         text.innerText = '';
